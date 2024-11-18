@@ -60,6 +60,35 @@ public class TennisGameTest {
 		game.player1Scored();
 		//Act
 		// This statement should cause an exception
-		game.player1Scored();			
-	}		
+		game.player1Scored();
+		//lisätään tarkistus koodiin että jos pelaajalla on yli neljä pistettä = automaattinen voitto??
+	}
+	
+	@Test
+	public void testTennisGame_Player1Wins() throws TennisGameException {
+		TennisGame game = new TennisGame();
+		//player 1 wins 4 - 1
+		game.player1Scored();
+		game.player2Scored();
+		game.player1Scored();
+		game.player1Scored();
+		game.player1Scored();
+		
+		game.getScore();
+	}
+	
+	@Test
+	public void testTennisGame_Player2Wins() throws TennisGameException {
+		TennisGame game = new TennisGame();
+		//player 2 wins 4 - 3
+		game.player2Scored();
+		game.player2Scored();
+		game.player1Scored();
+		game.player1Scored();
+		game.player1Scored();
+		game.player2Scored();
+		game.player2Scored();
+		
+		game.getScore();
+	}
 }
