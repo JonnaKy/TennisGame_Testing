@@ -19,13 +19,14 @@ public class TennisGameTest {
 // "player1 wins"
 // "player2 wins"
 	@Test
-	public void testTennisGame_Start() {
+	public void testTennisGame_Start() throws TennisGameException{
 		//Arrange
 		TennisGame game = new TennisGame();
 		//Act
 		String score = game.getScore() ;
 		// Assert
-		assertEquals("Initial score incorrect", "love - love", score);		
+		assertEquals("Initial score incorrect", "love - love", score);
+		
 	}
 	
 	@Test
@@ -82,11 +83,12 @@ public class TennisGameTest {
 	@Test
 	public void testTennisGame_Player1Wins() throws TennisGameException {
 		TennisGame game = new TennisGame();
-		//player 1 wins 4 - 1
+		//player 1 wins 4 - 2
 		game.player1Scored();
 		game.player2Scored();
 		game.player1Scored();
 		game.player1Scored();
+		game.player2Scored();
 		game.player1Scored();
 		
 		
@@ -114,7 +116,25 @@ public class TennisGameTest {
 	
 	@Test
 	public void testTennisGame_Player1Advantage() throws TennisGameException {
-		// 4 - 3
+		// 4 - 5
+		TennisGame game = new TennisGame();
+		game.player1Scored();
+		game.player2Scored();
+		game.player1Scored();
+		game.player1Scored();
+		game.player2Scored();
+		game.player2Scored();
+		game.player1Scored();
+		game.player2Scored();
+		game.player1Scored();
+		
+		String score = game.getScore() ;
+		assertEquals("Game score incorrect", "player1 has advantage", score);
+	}
+	
+	@Test
+	public void testTennisGame_Player1Advantage2() throws TennisGameException {
+		// 3 - 4
 		TennisGame game = new TennisGame();
 		game.player1Scored();
 		game.player2Scored();
@@ -156,4 +176,34 @@ public class TennisGameTest {
 		String score = game.getScore() ;
 		assertEquals("Game score incorrect", "deuce", score);
 	}
+	
+	@Test
+	public void allPointsPlayer1() throws TennisGameException{
+		//Arrange
+		TennisGame game = new TennisGame();
+		//Act
+		String score = game.getScore() ;
+		// Assert
+		assertEquals("Initial score incorrect", "love - love", score);
+		
+		game.player1Scored();
+		score = game.getScore() ;
+		assertEquals("Score incorrect", "love - 15", score);
+		game.player2Scored();
+		score = game.getScore() ;
+		assertEquals("Score incorrect", "15 - 15", score);
+		game.player1Scored();
+		score = game.getScore() ;
+		assertEquals("Score incorrect", "15 - 30", score);
+		game.player2Scored();
+		score = game.getScore() ;
+		assertEquals("Score incorrect", "30 - 30", score);
+		game.player1Scored();
+		score = game.getScore() ;
+		assertEquals("Score incorrect", "30 - 40", score);
+		game.player2Scored();
+		score = game.getScore() ;
+		assertEquals("Score incorrect", "deuce", score);
+	}
 }
+	
