@@ -179,11 +179,11 @@ public class TennisGameTest {
 	
 	@Test
 	public void allPointsPlayer1() throws TennisGameException{
-		//Arrange
+
 		TennisGame game = new TennisGame();
-		//Act
+
 		String score = game.getScore() ;
-		// Assert
+
 		assertEquals("Initial score incorrect", "love - love", score);
 		
 		game.player1Scored();
